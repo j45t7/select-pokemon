@@ -4,8 +4,6 @@ import './globals.css';
 
 const ibmVgaFont = localFont({
   src: './fonts/IBM_VGA.woff',
-  variable: '--font-ibm-vga',
-  weight: '100 900',
 });
 
 export const metadata: Metadata = {
@@ -20,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${ibmVgaFont.variable} `}>{children}</body>
+      <body className={`${ibmVgaFont.className} `}>{children}</body>
     </html>
   );
 }
