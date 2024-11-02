@@ -9,7 +9,6 @@ const StyledPrimaryButton = styled(Button)({
   textTransform: 'none',
   fontSize: 14,
   padding: '10px 24px',
-  border: '1px solid',
   lineHeight: 1.5,
   borderRadius: '2px',
   backgroundColor: '#9747FF',
@@ -18,10 +17,9 @@ const StyledPrimaryButton = styled(Button)({
   '&:hover': {
     backgroundColor: '#7135BF',
     borderColor: '#7135BF',
-    boxShadow: 'none',
   },
   '&:focus': {
-    boxShadow: '0 0 0 0.2rem #9747FF40', // Focus ring
+    boxShadow: '0 0 0 0.2rem #9747FF40',
   },
 });
 

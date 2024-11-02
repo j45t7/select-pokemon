@@ -1,4 +1,5 @@
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton';
+import SoftButton from '@/components/SoftButton/SoftButton';
 import theme from '@/styles/theme';
 import { Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
@@ -10,6 +11,7 @@ export default function Home() {
         <Typography>Pokemon</Typography>
         <p>Pokemon</p>
         <PrimaryButton>Primary</PrimaryButton>
+        <SoftButton>Soft</SoftButton>
       </div>
     </ThemeProvider>
   );
