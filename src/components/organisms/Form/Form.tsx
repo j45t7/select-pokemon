@@ -1,7 +1,6 @@
 'use client';
 
 import Wrapper from '@/components/atoms/Wrapper/Wrapper';
-import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -14,6 +13,7 @@ import TrainerInfoFields from '@/components/molecules/TrainerInfoFields/TrainerI
 import PokemonDisplay from '@/components/molecules/PokemonDisplay/PokemonDisplay';
 import PokemonSearch from '@/components/molecules/PokemonSearch/PokemonSearch';
 import FormButtons from '@/components/molecules/FormButtons/FormButtons';
+import CurrentDate from '@/components/atoms/CurrentDate/CurrentDate';
 
 export interface FormValues {
   trainerName: string;
@@ -44,11 +44,22 @@ const Form: React.FC = () => {
   const { handleSubmit, reset } = methods;
 
   const pokemonList: Pokemon[] = pokemonSearchData.data;
+
   const [filteredPokemon, setFilteredPokemon] =
     useState<Pokemon[]>(pokemonList);
   const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(
     null
   );
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const { data: pokemonData, isLoading } = useSearchPokemonQuery(
+    selectedPokemonId as number,
+    {
+      skip: selectedPokemonId === null,
+    }
+  );
+
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const fuse = new Fuse(pokemonList, {
     keys: ['name'],
@@ -63,14 +74,6 @@ const Form: React.FC = () => {
       setFilteredPokemon(pokemonList);
     }
   };
-  const { data: pokemonData, isLoading } = useSearchPokemonQuery(
-    selectedPokemonId as number,
-    {
-      skip: selectedPokemonId === null,
-    }
-  );
-
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleFormSubmit = () => {
     setDialogOpen(true);
@@ -95,7 +98,7 @@ const Form: React.FC = () => {
       <Wrapper>
         <StyledForm onSubmit={handleSubmit(handleFormSubmit)}>
           <FormProvider {...methods}>
-            <Typography>Date</Typography>
+            <CurrentDate timeZone={timeZone} />
             <TrainerInfoFields />
             <Box sx={{ marginTop: 2 }}>
               <PokemonSearch
