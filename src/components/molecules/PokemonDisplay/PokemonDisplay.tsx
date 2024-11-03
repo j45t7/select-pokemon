@@ -1,9 +1,9 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import PokemonCard from '../PokemonCardContent/PokemonCardContent';
 import { Pokemon } from '@/store/pokemonApi';
 import { Card } from '@mui/material';
-import styled from '@emotion/styled';
+import { styled } from '@mui/material/styles';
+import PokemonCard from '../PokemonCardContent/PokemonCardContent';
 
 interface PokemonDisplayProps {
   isLoading: boolean;
@@ -11,13 +11,16 @@ interface PokemonDisplayProps {
   selectedPokemonId: number | null;
 }
 
-const StyledCard = styled(Card)({
+const StyledCard = styled(Card)(({ theme }) => ({
   height: 300,
   padding: 24,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-});
+  [theme.breakpoints.down('sm')]: {
+    height: 500,
+  },
+}));
 
 const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
   isLoading,
@@ -27,7 +30,7 @@ const PokemonDisplay: React.FC<PokemonDisplayProps> = ({
   const pokemonInfo = selectedPokemonId && pokemonData;
 
   const renderContent = () => {
-    if (isLoading) {
+    if (isLoading && !pokemonInfo) {
       return <Typography>Loading...</Typography>;
     }
     if (pokemonInfo) {

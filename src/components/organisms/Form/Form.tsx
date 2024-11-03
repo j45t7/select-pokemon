@@ -72,9 +72,8 @@ const Form: React.FC = () => {
 
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleFormSubmit = (data: FormValues) => {
+  const handleFormSubmit = () => {
     setDialogOpen(true);
-    console.log('Form data:', data);
   };
 
   const handleCloseDialog = () => {
