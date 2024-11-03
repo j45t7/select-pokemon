@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
-
-const ibmVgaFont = localFont({
-  src: './fonts/IBM_VGA.woff',
-});
+import { IBM_VGA_FONT } from '@/fonts';
 
 export const metadata: Metadata = {
   title: 'Select Pokemon',
@@ -18,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${ibmVgaFont.className} `}>{children}</body>
+      <body className={`${IBM_VGA_FONT.className} `}>{children}</body>
     </html>
   );
 }
