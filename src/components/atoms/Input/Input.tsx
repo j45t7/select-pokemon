@@ -26,7 +26,7 @@ interface LabeledInputProps extends Omit<TextFieldProps, 'label' | 'type'> {
 const Input: React.FC<LabeledInputProps> = ({ label, ...props }) => {
   return (
     <div>
-      <InputLabel sx={{ marginLeft: '14px' }}>{label}</InputLabel>
+      <InputLabel>{label}</InputLabel>
       <StyledTextField type='text' {...props} />
     </div>
   );
