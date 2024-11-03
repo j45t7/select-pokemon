@@ -35,7 +35,6 @@ const PokemonSearch: React.FC<PokemonAutocompleteProps> = ({
             const selectedPokemon = filteredPokemon.find(
               (p) => p.name === lowercaseFirstLetter(newValue)
             );
-            console.log(newValue, 'selectedPokemon');
             onChange(
               selectedPokemon ? capitalizeFirstLetter(selectedPokemon.name) : ''
             );
