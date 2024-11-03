@@ -1,4 +1,5 @@
 "use client"
+
 import { IBM_VGA_FONT } from '@/fonts';
 import '../app/globals.css';
 import { createTheme } from '@mui/material/styles';
@@ -34,13 +35,6 @@ const theme = createTheme({
         }
       }
     },
-    MuiInputBase: {
-      styleOverrides: {
-        root: {
-          marginLeft: "14px"
-        }
-      }
-    }
   }
 });
 
