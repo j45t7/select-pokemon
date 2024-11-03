@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { TextField, InputLabel, TextFieldProps } from '@mui/material';
 import styled from '@emotion/styled';
 
@@ -18,18 +18,21 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-// Define the props for the LabeledInput component
 interface LabeledInputProps extends Omit<TextFieldProps, 'label' | 'type'> {
-  label: string; // The label for the input field
+  label: string;
 }
 
-const Input: React.FC<LabeledInputProps> = ({ label, ...props }) => {
-  return (
-    <div>
-      <InputLabel>{label}</InputLabel>
-      <StyledTextField type='text' {...props} />
-    </div>
-  );
-};
+const Input = forwardRef<HTMLInputElement, LabeledInputProps>(
+  ({ label, ...props }, ref) => {
+    return (
+      <>
+        <InputLabel>{label}</InputLabel>
+        <StyledTextField type='text' inputRef={ref} {...props} />
+      </>
+    );
+  }
+);
+
+Input.displayName = 'Input';
 
 export default Input;
