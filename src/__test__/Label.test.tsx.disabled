@@ -1,0 +1,28 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Provides custom matchers for Jest
+import { Label } from '../components/atoms/Label/Label'; // Adjust the path to the component as needed
+
+describe('Label Component', () => {
+  it('renders the Label component with the correct text', () => {
+    const labelText = 'Test Label';
+
+    render(<Label label={labelText} />);
+
+    const chipElement = screen.getByText(labelText);
+    expect(chipElement).toBeInTheDocument();
+    expect(chipElement).toHaveTextContent(labelText);
+  });
+
+  it('applies the correct styles to the Chip', () => {
+    const labelText = 'Styled Label';
+
+    render(<Label label={labelText} />);
+
+    const chipElement = screen.getByText(labelText);
+    expect(chipElement).toHaveStyle({
+      backgroundColor: '#9747ff40',
+      color: '#000000',
+    });
+  });
+});

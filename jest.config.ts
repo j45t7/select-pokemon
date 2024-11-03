@@ -8,7 +8,7 @@ import type { Config } from 'jest';
 const config: Config = {
   moduleNameMapper: {
     // ...
-    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   // All imported modules in your tests should be mocked automatically

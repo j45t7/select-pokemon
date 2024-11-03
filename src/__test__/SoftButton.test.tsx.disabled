@@ -1,0 +1,65 @@
+'use client';
+
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import SoftButton from '../components/atoms/SoftButton/SoftButton';
+
+describe('SoftButton Component', () => {
+  it('renders with correct text', () => {
+    render(<SoftButton>Click Me</SoftButton>);
+    const buttonElement = screen.getByRole('button', { name: /click me/i });
+
+    expect(buttonElement).toBeInTheDocument();
+  });
+
+  it('applies correct styles', () => {
+    const { container } = render(<SoftButton>Styled Button</SoftButton>);
+    const buttonElement = container.firstChild as HTMLElement | null;
+
+    if (buttonElement) {
+      expect(buttonElement).toHaveStyle('background-color: #EEEEEE');
+      expect(buttonElement).toHaveStyle('color: #2A2A2A');
+      expect(buttonElement).toHaveStyle('border-radius: 2px');
+    } else {
+      throw new Error('Button element is null');
+    }
+  });
+
+  it('handles additional props', () => {
+    render(
+      <SoftButton data-testid='soft-button' disabled>
+        Disabled Button
+      </SoftButton>
+    );
+    const buttonElement = screen.getByTestId('soft-button');
+    expect(buttonElement).toBeDisabled();
+  });
+
+  it('changes style on hover', () => {
+    const { container } = render(<SoftButton>Hover Me</SoftButton>);
+    const buttonElement = container.firstChild as HTMLElement | null;
+
+    if (buttonElement) {
+      // Simulate hover
+      buttonElement.dispatchEvent(
+        new MouseEvent('mouseover', { bubbles: true })
+      );
+      expect(buttonElement).toHaveStyle('background-color: #E4E4E4');
+    } else {
+      throw new Error('Button element is null');
+    }
+  });
+
+  it('shows focus styles on focus', () => {
+    const { container } = render(<SoftButton>Focus Me</SoftButton>);
+    const buttonElement = container.firstChild as HTMLElement | null;
+
+    if (buttonElement) {
+      // Simulate focus
+      buttonElement.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+      expect(buttonElement).toHaveStyle('box-shadow: 0 0 0 0.2rem #9747FF40');
+    } else {
+      throw new Error('Button element is null');
+    }
+  });
+});

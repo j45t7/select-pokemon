@@ -15,7 +15,20 @@ const TrainerInfoFields: React.FC = () => {
         <Controller
           name='trainerName'
           control={control}
-          rules={{ required: 'Trainer name is required' }}
+          rules={{
+            required: 'Required from 2 to 20 symbols',
+            validate: {
+              length: (value) => {
+                if (!value) {
+                  return true;
+                }
+                if (value.length < 2 || value.length > 20) {
+                  return 'Required from 2 to 20 symbols';
+                }
+                return true;
+              },
+            },
+          }}
           render={({ field }) => (
             <Input
               {...field}
@@ -33,9 +46,9 @@ const TrainerInfoFields: React.FC = () => {
           name='trainerAge'
           control={control}
           rules={{
-            required: 'Trainer age is required',
-            min: { value: 16, message: 'Age must be at least 16' },
-            max: { value: 99, message: 'Age must be less than or equal to 99' },
+            required: 'Required rage from 16-99',
+            min: { value: 16, message: 'Required rage from 16-99' },
+            max: { value: 99, message: 'Required rage from 16-99' },
             validate: {
               isNumber: (value) =>
                 !isNaN(Number(value)) || 'Age must be a number',
