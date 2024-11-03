@@ -17,6 +17,7 @@ const StyledPrimaryButton = styled(Button)({
   '&:hover': {
     backgroundColor: '#7135BF',
     borderColor: '#7135BF',
+    boxShadow: 'none',
   },
   '&:focus': {
     boxShadow: '0 0 0 0.2rem #9747FF40',
@@ -26,7 +27,7 @@ const StyledPrimaryButton = styled(Button)({
 const PrimaryButton: React.FC<React.ComponentProps<typeof Button>> = (
   props
 ) => {
-  return <StyledPrimaryButton variant='contained' {...props} />;
+  return <StyledPrimaryButton disableRipple variant='contained' {...props} />;
 };
 
 export default PrimaryButton;

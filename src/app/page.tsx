@@ -1,3 +1,6 @@
+import MyComponent from '@/components/atoms/Autocomplete/Autocomplete';
+import Input from '@/components/atoms/Input/Input';
+import { Label } from '@/components/atoms/Label/Label';
 import PrimaryButton from '@/components/atoms/PrimaryButton/PrimaryButton';
 import SoftButton from '@/components/SoftButton/SoftButton';
 import theme from '@/styles/theme';
@@ -12,6 +15,9 @@ export default function Home() {
         <p>Pokemon</p>
         <PrimaryButton>Primary</PrimaryButton>
         <SoftButton>Soft</SoftButton>
+        <Input label='Pokemon' />
+        <MyComponent></MyComponent>
+        <Label label='Label' />
       </div>
     </ThemeProvider>
   );

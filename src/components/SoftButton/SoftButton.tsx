@@ -17,6 +17,7 @@ const StyledSoftButton = styled(Button)({
   '&:hover': {
     backgroundColor: '#E4E4E4',
     borderColor: '#E4E4E4',
+    boxShadow: 'none',
   },
   '&:focus': {
     boxShadow: '0 0 0 0.2rem #9747FF40',
@@ -24,7 +25,7 @@ const StyledSoftButton = styled(Button)({
 });
 
 const SoftButton: React.FC<React.ComponentProps<typeof Button>> = (props) => {
-  return <StyledSoftButton variant='contained' {...props} />;
+  return <StyledSoftButton disableRipple variant='contained' {...props} />;
 };
 
 export default SoftButton;

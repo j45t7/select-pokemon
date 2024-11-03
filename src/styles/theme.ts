@@ -21,13 +21,6 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          disableRipple: true,
-        },
-      },
-    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
