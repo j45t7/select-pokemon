@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Autocomplete } from '@mui/material';
+import { Autocomplete, FilterOptionsState } from '@mui/material';
 import styled from '@emotion/styled';
 
 import Input from '../Input/Input';
@@ -19,8 +19,13 @@ interface CustomAutocompleteProps {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   onInputChange: (event: React.ChangeEvent<{}>, newValue: string) => void;
   value: string;
+  inputValue: string;
   errors: FieldErrors<FormValues>;
   fullWidth?: boolean;
+  filterOptions: (
+    options: unknown[],
+    state: FilterOptionsState<unknown>
+  ) => unknown[];
 }
 
 const StyledAutocomplete = styled(Autocomplete)({
@@ -45,12 +50,16 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
   onInputChange,
   value,
   errors,
+  inputValue,
+  filterOptions,
   fullWidth = true,
 }) => {
   return (
     <StyledAutocomplete
       options={options.map((pokemon) => capitalizeFirstLetter(pokemon.name))}
+      inputValue={inputValue}
       onInputChange={onInputChange}
+      filterOptions={filterOptions}
       renderInput={(params) => (
         <Input
           {...params}

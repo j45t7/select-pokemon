@@ -7,7 +7,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
 import pokemonSearchData from '@/data/pokemonData.json';
 import { useSearchPokemonQuery } from '@/store/pokemonApi';
-import Fuse from 'fuse.js';
 import SuccessDialog from '@/components/atoms/Dialog/Dialog';
 import TrainerInfoFields from '@/components/molecules/TrainerInfoFields/TrainerInfoFields';
 import PokemonDisplay from '@/components/molecules/PokemonDisplay/PokemonDisplay';
@@ -61,20 +60,6 @@ const Form: React.FC = () => {
 
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  const fuse = new Fuse(pokemonList, {
-    keys: ['name'],
-    threshold: 0.3,
-  });
-
-  const handlePokemonSearch = (query: string) => {
-    if (query) {
-      const results = fuse.search(query);
-      setFilteredPokemon(results.map((result) => result.item));
-    } else {
-      setFilteredPokemon(pokemonList);
-    }
-  };
-
   const handleFormSubmit = () => {
     setDialogOpen(true);
   };
@@ -103,7 +88,6 @@ const Form: React.FC = () => {
             <Box sx={{ marginTop: 2 }}>
               <PokemonSearch
                 filteredPokemon={filteredPokemon}
-                handlePokemonSearch={handlePokemonSearch}
                 setSelectedPokemonId={setSelectedPokemonId}
               />
             </Box>
