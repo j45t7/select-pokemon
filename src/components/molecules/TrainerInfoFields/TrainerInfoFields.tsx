@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import Grid from '@mui/material/Grid2';
 import Input from '@/components/atoms/Input/Input';
-import { FormValues } from '../Form/Form';
+import { FormValues } from '@/components/organisms/Form/Form';
 
 const TrainerInfoFields: React.FC = () => {
   const {

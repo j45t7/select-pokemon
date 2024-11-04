@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000' # Expose the Next.js app on port 3000
+    environment:
+      - NODE_ENV=production # or development for local testing
+    volumes:
+      - .:/app # Enable hot-reloading for local development
+      - /app/node_modules # Prevents overwriting node_modules from host machine
+
